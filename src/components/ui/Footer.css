@@ -1,0 +1,44 @@
+.footer {
+  position: relative;
+  background: rgba(10, 10, 10, 0.8);  /* Semi-transparent very dark background */
+  color: #e0e0e0;                     /* Light grey text for contrast */
+  padding: 1.25rem 1rem;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle top border matching grid lines */
+  text-align: center;
+  backdrop-filter: blur(6px);         /* Soft blur to separate from grid background */
+  z-index: 10;                        /* Above the grid-background */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-nav a {
+  color: #a3c1f7;                    /* Light bluish links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #d0d8ff;                   /* Lighter blue on hover */
+  text-decoration: underline;
+}
+
+/* Responsive horizontal layout on wider screens */
+@media (min-width: 600px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
