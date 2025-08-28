@@ -11,6 +11,7 @@ import Postjobs from './Pages/Postjobs'
 import Savedjobs from './Pages/Savedjobs'
 import MyJobs from './Pages/MyJobs'
 import { ThemeProvider } from './components/ui/theme-provider'
+import Protect_route from './components/Protect_route'
 
 function App() {
   
@@ -20,35 +21,50 @@ const Router=createBrowserRouter(
       children:[
        {
         path:'/',
-        element:<LandingPage />
+        element:
+          
+        <LandingPage />
+       
+        
        },
        {
         path:'/onboarding',
-        element:<Onboarding />
+        element:
+          <Protect_route>
+               <Onboarding />
+
+        </Protect_route>
+        
+        
        }
        ,
        {
         path:'/jobs',
-        element:<JobsList />
+        element:(<Protect_route> <JobsList /></Protect_route>)
+       
        }
        ,
        {
         path:'job/:id',
-        element:<Job />
+        element:(<Protect_route> <Job /></Protect_route>)
+       
        },
        {
         path:'post-jobs',
-        element:<Postjobs />
+        element:(<Protect_route>  <Postjobs /></Protect_route>)
+       
 
        },
        {
         path:'saved-jobs',
-        element:<Savedjobs />
+        element:(<Protect_route><Savedjobs /></Protect_route>)
+        
        }
        ,
        {
         path:'my-jobs',
-        element:<MyJobs />
+        element:<Protect_route><MyJobs /></Protect_route>
+       
        }
       ]
       
