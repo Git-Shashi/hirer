@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {Link, useSearchParams} from 'react-router-dom'
 import { Button } from './button'
-import { SignedOut } from '@clerk/clerk-react'
+import { SignedOut, useUser } from '@clerk/clerk-react'
 import { SignedIn } from '@clerk/clerk-react'
 import { UserButton } from '@clerk/clerk-react'
 import { SignInButton } from '@clerk/clerk-react'
 import { SignIn } from '@clerk/clerk-react'
 import { BriefcaseBusiness, Heart, PenBox } from 'lucide-react'
+
+
 // some points to notice in this page : 
 // 1. url synced with the popup 
 // 2. how popup works by making a state using usestate and on changing its value the popup 
@@ -15,6 +17,7 @@ import { BriefcaseBusiness, Heart, PenBox } from 'lucide-react'
 
 function Header() {
   const [showSignIn,setshowSignIn]=useState(false);
+  const {user}=useUser();
   const handleOverlayClick=(e)=>{
     if(e.target===e.currentTarget)
     {
@@ -44,13 +47,13 @@ if(search.get("sign-in"))
       </SignedOut>
       <SignedIn>
         {/* add a condtion here  we will only show this if user is a recruiter. */}
-        <Link to="/post-jobs">
-        <Button variant="destructive" className="rounded-full">
-          <PenBox size={20} className="mr-2"/>
+  {user?.unsafeMetadata?.role==="recruiter" && (<Link to="/post-jobs">
+  <Button variant="destructive" className="rounded-full">
+    <PenBox size={20} className="mr-2"/>
 
-          
-           Post a Job</Button>
-        </Link>
+    
+      Post a Job</Button>
+  </Link> )}
        <UserButton
   appearance={{
     variables: {

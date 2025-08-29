@@ -11,6 +11,13 @@ function Protect_route({children}) {
    {
     return <Navigate to='/?sign-in=true' />
    }
+
+   // Here you need to check onboarding status.
+   if(user!==undefined && !user?.unsafeMetadata?.role && pathname!="/onboarding")
+   {
+
+   return  <Navigate to='/onboarding' />
+   }
   return children;
     
   
